@@ -35,6 +35,39 @@ angular.module('groceryApp').controller('GroceryController', function($http) {
     $http.post('/groceries/add', sendData).then(handleAddSuccess, handleFailure);
   };
 
+  /**
+   * Things added by Connor
+     */
+
+  //Pass in grocery item ID to be deleted from the database
+  vm.delete = function(id) {
+    $http.delete('/groceries/delete/' + id)
+        .then(
+            function(res){
+              console.log(res);
+              showGroceries();
+            },
+            function(res){
+              console.log("Error: ", res);
+            }
+        )
+  };
+  //Pass in the entire item object to be passed to the database for update
+  vm.update = function(myObject){
+    console.log(myObject);
+    $http.put('/groceries/put', myObject)
+        .then(
+            function(res){
+              console.log(res);
+              showGroceries();
+            },
+            function(res){
+              console.log("Error: ", res);
+            }
+        )
+  }
+
+
   //see comments in groceryList router
   
   // vm.update = function(itemInput) {

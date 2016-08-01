@@ -15,8 +15,12 @@
   <h2>Your list:</h2>
   <div ng-repeat="item in grocery.items">
       <p>{{item.item}}: {{item.quantity}}</p>
+
+      <!--Connor--added text box to alter the items in ng-repeat using ng-model-->
+      <input type="text" ng-model="item.item">
+      <input type="number" ng-model="item.quantity">
       <button ng-click="grocery.update(item)">Update</button>
-      <button ng-click="grocery.delete(item)">Delete</button>
+      <button ng-click="grocery.delete(item._id)">Delete</button>
   </div>
 </body>
 </html>

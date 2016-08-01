@@ -32,6 +32,38 @@ router.post('/add', function(request, response) {
   });
 });
 
+/**
+ * Stuff added by Connor Below
+ */
+
+//This delete route captures the :id by using req.params
+router.delete('/delete/:id', function(req, res) {
+  var id = req.params.id;
+  Grocery.findByIdAndRemove(id, function(err) {
+    if(err){
+      res.sendStatus(500);
+    } else {
+      res.send(200);
+    }
+  })
+})
+//The put route takes in the entire data object from the client side, and can
+//be accessed using req.body.
+router.put('/put', function(req, res) {
+  var obj = req.body;
+
+  //Using mongoose method findByIdAndUpdate to update the specific record.
+  //Go to http://mongoosejs.com/docs/api.html and find Model.findByIdAndUpdate
+  //for documentation.
+  Grocery.findByIdAndUpdate(obj._id, obj, function(err) {
+    if(err){
+      res.sendStatus(500);
+    } else {
+      res.sendStatus(200);
+    }
+  })
+})
+
 //not sure if I've actually deleted or changed items in a database before
 //I never made it to the Hard or Pro modes on the assignments of this nature
 //I think I'd use put and delete, but beyond that...
