@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="groceryApp">
+<head>
+  <meta charset="utf-8" />
+  <title>Grocery List Code Challenge</title>
+  <script src="vendors/angular.min.js" charset="utf-8"></script>
+  <script src="scripts/client.js"></script>
+</head>
+<body ng-controller="GroceryController as grocery">
+  <h1>It's grocery shopping time!</h1>
+  <label>Add an item to your list:</label>
+  <input type="text" ng-model="grocery.item" placeholder="item"/>
+  <input type="text" ng-model="grocery.quantity" placeholder="quantity" />
+  <button ng-click="grocery.add()">Add!</button>
+  <h2>Your list:</h2>
+  <div ng-repeat="item in grocery.items">
+      <p>{{item.item}}: {{item.quantity}}</p>
+      <button ng-click="grocery.update(item)">Update</button>
+      <button ng-click="grocery.delete(item)">Delete</button>
+  </div>
+</body>
+</html>
